@@ -1,11 +1,14 @@
 import express, {Request, Response, NextFunction} from 'express';
+import usersRoute from './routes/users';
+
 const app = express();
 
-app.get('/status', (req: Request, res: Response, next: NextFunction) => {
+//middlewares
+app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 
-	res.send('bla');
-
-});
+//api
+app.use(usersRoute);
 
 const port = process.env.PORT || 5000;
 
